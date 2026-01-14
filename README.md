@@ -1,1 +1,1 @@
-# jay-shiny-practice
+# Day 1
