@@ -1,6 +1,10 @@
 ui <- page_sidebar(
   title = "Sales Dashboard",
-  theme = bs_theme(bootswatch = "flatly"),
+  theme = bs_theme(
+    bootswatch = "sandstone",
+    bg = "#123456",
+    fg = "#F8DE7E",
+    border_color = "#FF7F50"),
   
   sidebar = sidebar(
     selectInput("product", "Product:", 

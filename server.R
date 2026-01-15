@@ -20,6 +20,8 @@ server <- function(input, output, session) {
   })
   
   output$table <- renderTable({
-    head(filtered_data(), 20)
+    df <- head(filtered_data(), 20)
+    df$date <- format(df$date, "%d %b %Y")
+    df
   })
 }
