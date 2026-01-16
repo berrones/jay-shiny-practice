@@ -13,14 +13,36 @@ ui <- page_sidebar(
                 choices = c("All", unique(sales_data$region)))
   ),
   
-  layout_columns(
-    value_box("Total Sales", textOutput("total_sales"), showcase = icon("dollar-sign")),
-    value_box("Avg Amount", textOutput("avg_amount"), showcase = icon("chart-line")),
-    value_box("Total Units", textOutput("total_units"), showcase = icon("box"))
+navset_tab(
+  nav_panel("Data Overview",
+    card(
+      card_header(NULL)
+    ),
+    layout_columns(
+      value_box("Total Sales", textOutput("total_sales"), showcase = icon("dollar-sign")),
+      value_box("Avg Amount", textOutput("avg_amount"), showcase = icon("chart-line")),
+      value_box("Total Units", textOutput("total_units"), showcase = icon("box"))
+    ),
+    card(
+      card_header("Sales Data"),
+      tableOutput("table")
+    )
   ),
-  
-  card(
-    card_header("Sales Data"),
-    tableOutput("table")
+
+  nav_panel("Sales Trends",
+    card(
+      card_header(NULL)
+    ),
+    card(card_header("Total Sales Over Time"), "...")
+    # TODO: Add line graph showing total sales over time.
+  ),
+
+  nav_panel("Regional Comparisons",
+    card(
+      card_header(NULL)
+    ),
+    card(card_header("Sales Box Plots for Selected Regions"), "...")
+    # TODO: Add box plot for selected regions.
   )
+)
 )
