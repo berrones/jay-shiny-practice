@@ -2,6 +2,9 @@ server <- function(input, output, session) {
   
   filtered_data <- reactive({
     data <- sales_data
+    if(!is.null(input$dates)) {
+      data <- data[data$date >= input$dates[1] & data$date <= input$dates[2], ]
+    }
     if (input$product != "All") data <- data[data$product == input$product, ]
     if (input$region != "All") data <- data[data$region == input$region, ]
     data

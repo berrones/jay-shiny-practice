@@ -10,7 +10,14 @@ ui <- page_sidebar(
     selectInput("product", "Product:", 
                 choices = c("All", unique(sales_data$product))),
     selectInput("region", "Region:", 
-                choices = c("All", unique(sales_data$region)))
+                choices = c("All", unique(sales_data$region))),
+    dateRangeInput(
+      "dates", "Date range:",
+      start = min(sales_data$date),
+      end = max(sales_data$date),
+      min = min(sales_data$date),
+      max = max(sales_data$date)
+    )
   ),
   
 navset_tab(
