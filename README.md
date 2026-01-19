@@ -1,53 +1,64 @@
-# Sales Dashboard - Shiny App
+# Sales Dashboard – Shiny App
 
-A minimal, responsive Shiny dashboard built with only `shiny` and `bslib`.
+An interactive Shiny dashboard for exploring sales data across products, regions, and time. Designed to be clean, responsive, and immediately usable.
 
 ## Features
 
-- 📊 Interactive sales data visualization
-- 🎯 Filter by product and region
-- 📈 Real-time summary statistics
-- 💼 Clean, modern UI with bslib
-- ⚡ Lightweight - only 2 dependencies
+- 📊 Tabbed dashboard with **Data Overview**, **Sales Trends**, and **Regional Comparisons**
+- 🎯 Reactive filtering by product and date range
+- 📈 Sales Trends line chart (total sales over time)
+- 🧮 Real-time summary metrics (total sales, average amount, total units)
+- 🗂 Data preview table
+- 🌍 Regional Comparisons with four monthly sales bar charts (North, South, East, West)
+  - Consistent month-based coloring across regions
+  - Region selector automatically disabled when not applicable
+- 🎨 Clean, modern UI powered by `bslib`
 
 ## Installation
 
 ```r
-install.packages(c("shiny", "bslib"))
-```
+install.packages(c("shiny", "bslib", "shinyjs"))
 
-## Running the App
+Running the App
 
-```r
-# From R console in the app directory
+# From an R console in the app directory
 shiny::runApp()
 
-# Or from RStudio - open any file and click "Run App"
-```
+# Or open in RStudio and click "Run App"
 
-## File Structure
+File Structure
 
-```
-├── global.R    # Data setup and libraries
+├── global.R    # Libraries and data
 ├── ui.R        # User interface
 ├── server.R    # Server logic
-└── README.md   # This file
-```
+└── README.md
 
-## Data
+Data
 
-The app uses a hardcoded dataset of 100 sales records with:
-- Date (100 days starting from 2024-01-01)
-- Product (Laptop, Phone, Tablet, Monitor, Keyboard)
-- Region (North, South, East, West)
-- Sales Amount ($100-$5000)
-- Units Sold (1-20)
+The app uses a built-in example dataset with:
 
-## Dependencies
+Daily dates starting from 2024-01-01
 
-- R >= 4.0.0
-- shiny
-- bslib
+Products: Laptop, Phone, Tablet, Monitor, Keyboard
 
-## License
+Regions: North, South, East, West
 
+Sales amounts ($100–$5000)
+
+Units sold (1–20)
+
+
+Dependencies
+
+R ≥ 4.0.0
+
+shiny
+
+bslib
+
+shinyjs
+
+
+License
+
+MIT
