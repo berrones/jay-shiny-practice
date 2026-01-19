@@ -40,8 +40,9 @@ navset_tab(
     card(
       card_header(NULL)
     ),
-    card(card_header("Total Sales Over Time"), "...")
-    # TODO: Add line graph showing total sales over time.
+    card(card_header("Total Sales Over Time"), 
+    plotOutput("sales_trend_plot", height=300)
+    )
   ),
 
   nav_panel("Regional Comparisons",

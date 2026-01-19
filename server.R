@@ -9,6 +9,19 @@ server <- function(input, output, session) {
     if (input$region != "All") data <- data[data$region == input$region, ]
     data
   })
+
+  output$sales_trend_plot <- renderPlot({
+    df <- filtered_data()
+
+    daily <- aggregate(amount ~ date, data=df, sum)
+
+    plot(
+      daily$date, daily$amount,
+      type = "l",
+      xlab = "Date",
+      ylab = "Total Sales"
+    )
+  })
   
   output$total_sales <- renderText({
     paste0("$", format(sum(filtered_data()$amount), big.mark = ",", nsmall = 0))
