@@ -40,6 +40,7 @@ Only two R packages are required:
 ```r
 install.packages(c("shiny", "wavelets"))
 
+
 How to run
 
 Clone or download the repository, then from the app directory:
@@ -49,9 +50,10 @@ shiny::runApp()
 
 or open app.R in RStudio and click Run App.
 
+
 Target audience
 
-Students encountering wavelets for the first time
+Enthusiasts encountering wavelets for the first time
 
 Applied math, statistics, signal processing, or bioinformatics learners
 
