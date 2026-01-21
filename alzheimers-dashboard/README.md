@@ -57,8 +57,11 @@ All four `.csv` files must be located in the same directory as `app.R`.
 
 ## Running the App
 
-```r
+#Dependencies
+install.packages("shiny","bslib",","tidyverse","readr","DT","broom")
+
 shiny::runApp()
+
 
 Intended Use
 
