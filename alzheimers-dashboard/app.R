@@ -10,10 +10,9 @@ library(broom)
 study_files <- c(
   "ad_data.csv",
   "alzheimer_smoking_df.csv",
-  "alzheimers_biomarkers_tbl_df.csv",
   "LewyDLBad.csv"
 )
-study_names <- c("Study 1", "Study 2", "Study 3", "Study 4")
+study_names <- c("Study 1: Craig-Schapiro et al. 2011", "Study 2: Salib-Hillier 1997", "Study 3: Nedelksa et al. 2015")
 
 # ---- helpers ----
 safe_read_csv <- function(path) {
@@ -139,7 +138,7 @@ study_ui <- function(id, label) {
       radioButtons(
         ns("panel"),
         "Analysis",
-        choices = c("Summary Data", "Data Overview", "Two-Way Correlations", "Linear Regression", "Logistic Regression"),
+        choices = c("Dataset Variables", "Full Dataset", "Two-Way Correlations", "Linear Regression", "Logistic Regression"),
         selected = "Summary Data"
       ),
       tags$hr(),
@@ -199,11 +198,11 @@ study_server <- function(id, csv_path) {
       req(df_raw())
       df <- df_raw()
 
-      if (input$panel == "Summary Data") {
+      if (input$panel == "Dataset Variables") {
         tagList(
           DTOutput(session$ns("sum_tbl"))
         )
-      } else if (input$panel == "Data Overview") {
+      } else if (input$panel == "Full Dataset") {
         tagList(
           DTOutput(session$ns("data_tbl"))
         )
@@ -362,30 +361,24 @@ ui <- page_navbar(
       col_widths = c(6, 6),
       card(
         card_header(study_names[1]),
-        p("Explore analyses for this study."),
+        p("Multiplexed Immunoassay Panel Identifies Novel CSF Biomarkers for Alzheimer's Disease Diagnosis and Prognosis, PLoS ONE 6(4): e18850."),
         actionButton("go1", "Open analysis", class = "btn-primary")
       ),
       card(
         card_header(study_names[2]),
-        p("Explore analyses for this study."),
+        p("A case-control study of smoking and Alzheimer's disease. International Journal of Geriatric Psychiatry 12: 295-300."),
         actionButton("go2", "Open analysis", class = "btn-primary")
       ),
       card(
         card_header(study_names[3]),
-        p("Explore analyses for this study."),
+        p("Pattern of brain atrophy rates in autopsy-confirmed dementia with Lewy bodies, Neurobiology of Aging 36: 452-461."),
         actionButton("go3", "Open analysis", class = "btn-primary")
-      ),
-      card(
-        card_header(study_names[4]),
-        p("Explore analyses for this study."),
-        actionButton("go4", "Open analysis", class = "btn-primary")
       )
     )
   ),
   nav_panel(study_names[1], study_ui("s1", study_names[1])),
   nav_panel(study_names[2], study_ui("s2", study_names[2])),
-  nav_panel(study_names[3], study_ui("s3", study_names[3])),
-  nav_panel(study_names[4], study_ui("s4", study_names[4]))
+  nav_panel(study_names[3], study_ui("s3", study_names[3]))
 )
 
 # ---- server ----
@@ -393,12 +386,10 @@ server <- function(input, output, session) {
   observeEvent(input$go1, updateNavbarPage(session, "main_nav", selected = study_names[1]))
   observeEvent(input$go2, updateNavbarPage(session, "main_nav", selected = study_names[2]))
   observeEvent(input$go3, updateNavbarPage(session, "main_nav", selected = study_names[3]))
-  observeEvent(input$go4, updateNavbarPage(session, "main_nav", selected = study_names[4]))
 
   study_server("s1", study_files[1])
   study_server("s2", study_files[2])
   study_server("s3", study_files[3])
-  study_server("s4", study_files[4])
 }
 
 shinyApp(ui, server)
